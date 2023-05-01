@@ -32,7 +32,7 @@ namespace PrimeCinema
             var jsonPayload = JsonConvert.SerializeObject(payload);
 
             var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-            var response = await httpClient.PostAsync("http://20.90.72.41:5000/SeeLocal", content);
+            var response = await httpClient.PostAsync("http://20.90.72.41:5000/Add_Local", content);
 
             if (response.IsSuccessStatusCode)
             {
