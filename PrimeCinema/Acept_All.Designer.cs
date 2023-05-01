@@ -47,6 +47,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.Format = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Movie
@@ -87,7 +92,7 @@
             this.Quantity.AutoSize = true;
             this.Quantity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Quantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity.Location = new System.Drawing.Point(550, 80);
+            this.Quantity.Location = new System.Drawing.Point(543, 25);
             this.Quantity.Name = "Quantity";
             this.Quantity.Size = new System.Drawing.Size(56, 26);
             this.Quantity.TabIndex = 4;
@@ -98,7 +103,7 @@
             this.Third_Age.AutoSize = true;
             this.Third_Age.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Third_Age.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Third_Age.Location = new System.Drawing.Point(550, 160);
+            this.Third_Age.Location = new System.Drawing.Point(543, 105);
             this.Third_Age.Name = "Third_Age";
             this.Third_Age.Size = new System.Drawing.Size(114, 26);
             this.Third_Age.TabIndex = 5;
@@ -120,7 +125,7 @@
             this.Adults.AutoSize = true;
             this.Adults.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.Adults.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Adults.Location = new System.Drawing.Point(566, 251);
+            this.Adults.Location = new System.Drawing.Point(559, 196);
             this.Adults.Name = "Adults";
             this.Adults.Size = new System.Drawing.Size(79, 26);
             this.Adults.TabIndex = 7;
@@ -131,7 +136,7 @@
             this.Quantity_TA.AutoSize = true;
             this.Quantity_TA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Quantity_TA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity_TA.Location = new System.Drawing.Point(590, 197);
+            this.Quantity_TA.Location = new System.Drawing.Point(583, 142);
             this.Quantity_TA.Name = "Quantity_TA";
             this.Quantity_TA.Size = new System.Drawing.Size(38, 26);
             this.Quantity_TA.TabIndex = 8;
@@ -141,7 +146,7 @@
             // 
             this.Less_TA.AutoSize = true;
             this.Less_TA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Less_TA.Location = new System.Drawing.Point(550, 197);
+            this.Less_TA.Location = new System.Drawing.Point(543, 142);
             this.Less_TA.Name = "Less_TA";
             this.Less_TA.Size = new System.Drawing.Size(20, 26);
             this.Less_TA.TabIndex = 9;
@@ -152,7 +157,7 @@
             // 
             this.Plus_TA.AutoSize = true;
             this.Plus_TA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Plus_TA.Location = new System.Drawing.Point(639, 197);
+            this.Plus_TA.Location = new System.Drawing.Point(632, 142);
             this.Plus_TA.Name = "Plus_TA";
             this.Plus_TA.Size = new System.Drawing.Size(26, 26);
             this.Plus_TA.TabIndex = 10;
@@ -163,7 +168,7 @@
             // 
             this.Plus_A.AutoSize = true;
             this.Plus_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Plus_A.Location = new System.Drawing.Point(637, 292);
+            this.Plus_A.Location = new System.Drawing.Point(630, 237);
             this.Plus_A.Name = "Plus_A";
             this.Plus_A.Size = new System.Drawing.Size(26, 26);
             this.Plus_A.TabIndex = 13;
@@ -174,7 +179,7 @@
             // 
             this.Less_A.AutoSize = true;
             this.Less_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Less_A.Location = new System.Drawing.Point(548, 292);
+            this.Less_A.Location = new System.Drawing.Point(541, 237);
             this.Less_A.Name = "Less_A";
             this.Less_A.Size = new System.Drawing.Size(20, 26);
             this.Less_A.TabIndex = 12;
@@ -186,7 +191,7 @@
             this.Quantity_A.AutoSize = true;
             this.Quantity_A.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.Quantity_A.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Quantity_A.Location = new System.Drawing.Point(588, 292);
+            this.Quantity_A.Location = new System.Drawing.Point(581, 237);
             this.Quantity_A.Name = "Quantity_A";
             this.Quantity_A.Size = new System.Drawing.Size(38, 26);
             this.Quantity_A.TabIndex = 11;
@@ -196,7 +201,7 @@
             // 
             this.Total.AutoSize = true;
             this.Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Total.Location = new System.Drawing.Point(586, 354);
+            this.Total.Location = new System.Drawing.Point(579, 299);
             this.Total.Name = "Total";
             this.Total.Size = new System.Drawing.Size(64, 26);
             this.Total.TabIndex = 14;
@@ -206,7 +211,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(566, 354);
+            this.label2.Location = new System.Drawing.Point(559, 299);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(25, 26);
             this.label2.TabIndex = 15;
@@ -252,11 +257,62 @@
             this.Format.Size = new System.Drawing.Size(121, 34);
             this.Format.TabIndex = 19;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(587, 350);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 26);
+            this.textBox1.TabIndex = 20;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(242, 214);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(293, 23);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.progressBar1.TabIndex = 21;
+            this.progressBar1.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(309, 191);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(164, 20);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Please wait a moment";
+            this.label1.Visible = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(481, 353);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(103, 20);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Enter Money:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(703, 353);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 20);
+            this.label4.TabIndex = 24;
+            this.label4.Text = "0";
+            // 
             // Acept_All
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.progressBar1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.Format);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -307,5 +363,10 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ComboBox Format;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }

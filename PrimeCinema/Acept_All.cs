@@ -33,135 +33,145 @@ namespace PrimeCinema
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string j = Quantity.Text;
-            j = j.Replace(" ", "");
-            j = j.Replace("Quantity:", "");
-            int a = int.Parse(j);
-            var httpClient = new HttpClient();
-            for (int i = 0; i < a; i++)
+            if (button1.BackColor == Color.SkyBlue)
             {
-                var payload = new Dictionary<string, string> { { "Usuario", control.user } };
-                payload.Add("Movie", control.movie_name);
-                var jsonPayload = JsonConvert.SerializeObject(payload);
-                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://20.90.72.41:5000/AddSales", content);
-
-                if (response.IsSuccessStatusCode)
+                label1.Visible= true;
+                progressBar1.Visible = true;
+                string j = Quantity.Text;
+                j = j.Replace(" ", "");
+                j = j.Replace("Quantity:", "");
+                int a = int.Parse(j);
+                var httpClient = new HttpClient();
+                for (int i = 0; i < a; i++)
                 {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
-                }
+                    var payload = new Dictionary<string, string> { { "Usuario", control.user } };
+                    payload.Add("Movie", control.movie_name);
+                    var jsonPayload = JsonConvert.SerializeObject(payload);
+                    var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync("http://20.90.72.41:5000/AddSales", content);
 
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                    }
+
+                }
+                int b = int.Parse(Quantity_A.Text);
+                string y = Seats.Text;
+                y = y.Replace(" ", "");
+                y = y.Replace("Seats:", "");
+                string p = "";
+
+                List<string> seats_list = new List<string>();
+                for (int k = 0; k < y.Length; k++)
+                {
+                    if (y[k].ToString() != ",")
+                        p += y[k].ToString();
+                    if (y[k].ToString() == "," || y.Length - 1 == k)
+                    {
+                        seats_list.Add(p);
+                        p = "";
+                    }
+                }
+                for (int z = 0; z < b; z++)
+                {
+                    var data = new Dictionary<string, string> { { "Usuario", control.user } };
+                    data.Add("Asiento", seats_list[z].ToString());
+                    data.Add("Formato", Format.SelectedItem.ToString());
+                    data.Add("Edad", "Adultos");
+                    data.Add("Local", Local.Text);
+                    data.Add("Sala", Hall.Text);
+                    data.Add("Pelicula", Movie.Text);
+                    if (Format.SelectedItem.ToString() == "2D")
+                    {
+                        data.Add("Precio", "$5");
+                    }
+                    else
+                    {
+                        data.Add("Precio", "$6.55");
+                    }
+
+                    var jsonPayload = JsonConvert.SerializeObject(data);
+                    var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync("http://20.90.72.41:5000/Sales", content);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                    }
+                    //next
+                    var payload1 = new Dictionary<string, string> { { "Usuario", control.user } };
+                    payload1.Add("local", control.Locals.ToString());
+                    payload1.Add("hall", control.Halls.ToString());
+                    payload1.Add("seat", seats_list[z]);
+                    var jsonPayload1 = JsonConvert.SerializeObject(payload1);
+                    var content1 = new StringContent(jsonPayload1, System.Text.Encoding.UTF8, "application/json");
+                    var response1 = await httpClient.PostAsync("http://20.90.72.41:5000/update_seat", content1);
+                    if (response1.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                    }
+
+                }
+                int w = int.Parse(Quantity_TA.Text);
+                for (int n = 0; n < w; n++)
+                {
+
+                    var data = new Dictionary<string, string> { { "Usuario", control.user } };
+                    data.Add("Asiento", seats_list[control.Count_AA - n - 1]);
+                    data.Add("Formato", Format.SelectedItem.ToString());
+                    data.Add("Edad", "Tercera Edad");
+                    data.Add("Local", Local.Text);
+                    data.Add("Sala", Hall.Text);
+                    data.Add("Pelicula", Movie.Text);
+                    if (Format.SelectedItem.ToString() == "2D")
+                    {
+                        data.Add("Precio", "$3.9");
+                    }
+                    else
+                    {
+                        data.Add("Precio", "$5.6");
+                    }
+
+                    var jsonPayload = JsonConvert.SerializeObject(data);
+                    var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
+                    var response = await httpClient.PostAsync("http://20.90.72.41:5000/Sales", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var json = await response.Content.ReadAsStringAsync();
+                        var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                    }
+
+
+
+
+                    var payload1 = new Dictionary<string, string> { { "Usuario", control.user } };
+                    payload1.Add("local", control.Locals.ToString());
+                    payload1.Add("hall", control.Halls.ToString());
+                    payload1.Add("seat", seats_list[control.Count_AA - n - 1]);
+                    var jsonPayload1 = JsonConvert.SerializeObject(payload1);
+                    var content1 = new StringContent(jsonPayload1, System.Text.Encoding.UTF8, "application/json");
+                    var response1 = await httpClient.PostAsync("http://20.90.72.41:5000/update_seat", content1);
+                    if (response1.IsSuccessStatusCode)
+                    {
+                        var json = await response1.Content.ReadAsStringAsync();
+                        var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                    }
+
+                }
+                label1.Visible = false;
+                progressBar1.Visible = false;
+                Accept accept = new Accept();
+                accept.ShowDialog();
             }
-            int b = int.Parse(Quantity_A.Text);
-            string y = Seats.Text;
-            y = y.Replace(" ", "");
-            y = y.Replace("Seats:", "");
-            string p= "";
-
-            List<string> seats_list = new List<string>();
-            for (int k = 0; k < y.Length; k++)
-            {   if (y[k].ToString() != ",")
-                p += y[k].ToString();
-                if (y[k].ToString() == "," || y.Length-1 == k) {
-                    seats_list.Add(p);
-                    p = "";
-                } 
-            }
-            for (int z = 0; z < b; z++)
-            {
-                var data = new Dictionary<string, string> { { "Usuario", control.user } };
-                data.Add("Asiento", seats_list[z].ToString());
-                data.Add("Formato", Format.SelectedItem.ToString());
-                data.Add("Edad", "Adultos");
-                data.Add("Local", Local.Text);
-                data.Add("Sala", Hall.Text);
-                data.Add("Pelicula", Movie.Text);
-                if (Format.SelectedItem.ToString() == "2D")
-                {
-                    data.Add("Precio", "$5");
-                }
-                else
-                {
-                    data.Add("Precio", "$6.55");
-                }
-
-                var jsonPayload = JsonConvert.SerializeObject(data);
-                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://20.90.72.41:5000/Sales", content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
-                }
-                //next
-                var payload1 = new Dictionary<string, string> { { "Usuario", control.user } };
-                payload1.Add("local", control.Locals.ToString());
-                payload1.Add("hall", control.Halls.ToString());
-                payload1.Add("seat", seats_list[z]);
-                var jsonPayload1 = JsonConvert.SerializeObject(payload1);
-                var content1 = new StringContent(jsonPayload1, System.Text.Encoding.UTF8, "application/json");
-                var response1 = await httpClient.PostAsync("http://20.90.72.41:5000/update_seat", content1);
-                if (response1.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
-                }
-
-            }
-            int w = int.Parse(Quantity_TA.Text);
-            for (int n = 0; n < w; n++)
-            {
-
-                var data = new Dictionary<string, string> { { "Usuario", control.user } };
-                data.Add("Asiento", seats_list[control.Count_AA-n-1]);
-                data.Add("Formato", Format.SelectedItem.ToString());
-                data.Add("Edad", "Tercera Edad");
-                data.Add("Local", Local.Text);
-                data.Add("Sala", Hall.Text);
-                data.Add("Pelicula", Movie.Text);
-                if (Format.SelectedItem.ToString() == "2D")
-                {
-                    data.Add("Precio", "$3.9");
-                }
-                else
-                {
-                    data.Add("Precio", "$5.6");
-                }
-
-                var jsonPayload = JsonConvert.SerializeObject(data);
-                var content = new StringContent(jsonPayload, System.Text.Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("http://20.90.72.41:5000/Sales", content);
-                if (response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
-                }
-
-
-
-
-                var payload1 = new Dictionary<string, string> { { "Usuario", control.user } };
-                payload1.Add("local", control.Locals.ToString());
-                payload1.Add("hall", control.Halls.ToString());
-                payload1.Add("seat", seats_list[control.Count_AA - n - 1]);
-                var jsonPayload1 = JsonConvert.SerializeObject(payload1);
-                var content1 = new StringContent(jsonPayload1, System.Text.Encoding.UTF8, "application/json");
-                var response1 = await httpClient.PostAsync("http://20.90.72.41:5000/update_seat", content1);
-                if (response1.IsSuccessStatusCode)
-                {
-                    var json = await response1.Content.ReadAsStringAsync();
-                    var datos = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
-                }
-
-            }
-            Accept accept = new Accept();
-            accept.ShowDialog();
         }
 
         private void Acept_All_Load(object sender, EventArgs e)
         {
+            button1.BackColor= Color.Gray;
             Movie.Text = control.movie_name;
             Local.Text = control.Local_AA;
             Hall.Text = control.Sala_AA;
@@ -341,6 +351,39 @@ namespace PrimeCinema
             control.Seats_name = "";
             control.Count_AA = 0;
             control.Count_General_AA = 0;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+            {
+                if (float.Parse(textBox1.Text.ToString()) == float.Parse(Total.Text.ToString()) || float.Parse(textBox1.Text.ToString()) > float.Parse(Total.Text.ToString()))
+                {
+                    button1.BackColor = Color.SkyBlue;
+                    label4.Text = $" {(float)Math.Round(float.Parse(textBox1.Text.ToString()) - float.Parse(Total.Text.ToString()), 2)} ";
+                }
+            }
+
+            else
+            {
+                button1.BackColor = Color.Gray;
+                label4.Text = "0";
+            }
+        }
+
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.') && (e.KeyChar != ','))
+            {
+                e.Handled = true; // Cancelar el evento para evitar que se muestre en el TextBox
+            }
+
+            // Permitir solo un punto decimal
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true; // Cancelar el evento para evitar que se muestre en el TextBox
+            }
         }
     }
     

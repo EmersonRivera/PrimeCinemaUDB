@@ -192,7 +192,6 @@ namespace PrimeCinema
         private async void pictureBox3_Click_1(object sender, EventArgs e)
         {
             var httpClient = new HttpClient();
-
             var payload = new Dictionary<string, string> { { "Usuario", control.user } };
             payload.Add("Movie", control.moment_image3);
             var jsonPayload = JsonConvert.SerializeObject(payload);
